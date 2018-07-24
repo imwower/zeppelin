@@ -261,7 +261,8 @@ public class ZeppelinConfiguration extends XMLConfiguration {
   }
 
   public int getServerSslPort() {
-    return getInt(ConfVars.ZEPPELIN_SSL_PORT);
+    ConfVars vars = ConfVars.ZEPPELIN_SSL_PORT;
+    return getValue(vars);
   }
 
   public boolean useClientAuth() {
@@ -273,7 +274,28 @@ public class ZeppelinConfiguration extends XMLConfiguration {
   }
 
   public int getServerPort() {
-    return getInt(ConfVars.ZEPPELIN_PORT);
+    ConfVars vars = ConfVars.ZEPPELIN_PORT;
+    return getValue(vars);
+  }
+
+  private int getValue(ConfVars vars) {
+    String value = System.getenv(vars.name());
+    if (value != null) {
+      return Integer.parseInt(getValue(value));
+    } else {
+      value = System.getProperty(vars.getVarName());
+      if (value != null) {
+        return Integer.parseInt(getValue(value));
+      }
+      return getIntValue(vars.getVarName(), vars.getIntValue());
+    }
+  }
+
+  private String getValue(String input) {
+    if (input.contains(":")) {
+      return input.substring(input.lastIndexOf(":") + 1);
+    } else
+      return input;
   }
 
   public String getServerContextPath() {
