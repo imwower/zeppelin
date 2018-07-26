@@ -1,0 +1,3 @@
+[submodule "zeppelin-mongodb-interpreter"]
+    path = zeppelin-mongodb-interpreter
+    url = https://github.com/bbonnin/zeppelin-mongodb-interpreter.git
