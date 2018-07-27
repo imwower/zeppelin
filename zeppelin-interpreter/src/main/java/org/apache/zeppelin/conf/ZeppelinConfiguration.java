@@ -715,7 +715,48 @@ public class ZeppelinConfiguration extends XMLConfiguration {
     ZEPPELIN_SSL_TRUSTSTORE_PASSWORD("zeppelin.ssl.truststore.password", null),
     ZEPPELIN_WAR("zeppelin.war", "zeppelin-web/dist"),
     ZEPPELIN_WAR_TEMPDIR("zeppelin.war.tempdir", "webapps"),
-
+    ZEPPELIN_INTERPRETERS("zeppelin.interpreters", "org.apache.zeppelin.spark.SparkInterpreter,"
+        +"org.apache.zeppelin.mongodb.MongoDbInterprete,"
+        + "org.apache.zeppelin.spark.PySparkInterpreter,"
+        + "org.apache.zeppelin.rinterpreter.RRepl,"
+        + "org.apache.zeppelin.rinterpreter.KnitR,"
+        + "org.apache.zeppelin.spark.SparkRInterpreter,"
+        + "org.apache.zeppelin.spark.SparkSqlInterpreter,"
+        + "org.apache.zeppelin.spark.DepInterpreter,"
+        + "org.apache.zeppelin.markdown.Markdown,"
+        + "org.apache.zeppelin.angular.AngularInterpreter,"
+        + "org.apache.zeppelin.shell.ShellInterpreter,"
+        + "org.apache.zeppelin.livy.LivySparkInterpreter,"
+        + "org.apache.zeppelin.livy.LivySparkSQLInterpreter,"
+        + "org.apache.zeppelin.livy.LivyPySparkInterpreter,"
+        + "org.apache.zeppelin.livy.LivyPySpark3Interpreter,"
+        + "org.apache.zeppelin.livy.LivySparkRInterpreter,"
+        + "org.apache.zeppelin.alluxio.AlluxioInterpreter,"
+        + "org.apache.zeppelin.file.HDFSFileInterpreter,"
+        + "org.apache.zeppelin.pig.PigInterpreter,"
+        + "org.apache.zeppelin.pig.PigQueryInterpreter,"
+        + "org.apache.zeppelin.flink.FlinkInterpreter,"
+        + "org.apache.zeppelin.python.PythonInterpreter,"
+        + "org.apache.zeppelin.python.PythonInterpreterPandasSql,"
+        + "org.apache.zeppelin.python.PythonCondaInterpreter,"
+        + "org.apache.zeppelin.python.PythonDockerInterpreter,"
+        + "org.apache.zeppelin.ignite.IgniteInterpreter,"
+        + "org.apache.zeppelin.ignite.IgniteSqlInterpreter,"
+        + "org.apache.zeppelin.lens.LensInterpreter,"
+        + "org.apache.zeppelin.cassandra.CassandraInterpreter,"
+        + "org.apache.zeppelin.geode.GeodeOqlInterpreter,"
+        + "org.apache.zeppelin.kylin.KylinInterpreter,"
+        + "org.apache.zeppelin.elasticsearch.ElasticsearchInterpreter,"
+        + "org.apache.zeppelin.scalding.ScaldingInterpreter,"
+        + "org.apache.zeppelin.jdbc.JDBCInterpreter,"
+        + "org.apache.zeppelin.hbase.HbaseInterpreter,"
+        + "org.apache.zeppelin.bigquery.BigQueryInterpreter,"
+        + "org.apache.zeppelin.beam.BeamInterpreter,"
+        + "org.apache.zeppelin.scio.ScioInterpreter,"
+        + "org.apache.zeppelin.groovy.GroovyInterpreter,"
+        + "org.apache.zeppelin.neo4j.Neo4jCypherInterpreter,"
+        + "org.apache.zeppelin.sap.UniverseInterpreter"
+        ),
     ZEPPELIN_INTERPRETER_JSON("zeppelin.interpreter.setting", "interpreter-setting.json"),
     ZEPPELIN_INTERPRETER_DIR("zeppelin.interpreter.dir", "interpreter"),
     ZEPPELIN_INTERPRETER_LOCALREPO("zeppelin.interpreter.localRepo", "local-repo"),
@@ -723,7 +764,7 @@ public class ZeppelinConfiguration extends XMLConfiguration {
         "http://repo1.maven.org/maven2/"),
     ZEPPELIN_INTERPRETER_CONNECT_TIMEOUT("zeppelin.interpreter.connect.timeout", 60000),
     ZEPPELIN_INTERPRETER_MAX_POOL_SIZE("zeppelin.interpreter.max.poolsize", 10),
-    ZEPPELIN_INTERPRETER_GROUP_ORDER("zeppelin.interpreter.group.order", "spark,md,angular,sh,"
+    ZEPPELIN_INTERPRETER_GROUP_ORDER("zeppelin.interpreter.group.order", "mongodb,spark,md,angular,sh,"
         + "livy,alluxio,file,psql,flink,python,ignite,lens,cassandra,geode,kylin,elasticsearch,"
         + "scalding,jdbc,hbase,bigquery,beam,pig,scio,groovy,neo4j"),
     ZEPPELIN_INTERPRETER_OUTPUT_LIMIT("zeppelin.interpreter.output.limit", 1024 * 100),
