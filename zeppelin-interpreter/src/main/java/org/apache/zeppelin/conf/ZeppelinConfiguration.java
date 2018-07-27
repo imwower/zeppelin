@@ -716,6 +716,7 @@ public class ZeppelinConfiguration extends XMLConfiguration {
     ZEPPELIN_WAR("zeppelin.war", "zeppelin-web/dist"),
     ZEPPELIN_WAR_TEMPDIR("zeppelin.war.tempdir", "webapps"),
     ZEPPELIN_INTERPRETERS("zeppelin.interpreters", "org.apache.zeppelin.spark.SparkInterpreter,"
+        +"org.apache.zeppelin.mongodb.MongoDbInterprete,"
         + "org.apache.zeppelin.spark.PySparkInterpreter,"
         + "org.apache.zeppelin.rinterpreter.RRepl,"
         + "org.apache.zeppelin.rinterpreter.KnitR,"
@@ -763,7 +764,7 @@ public class ZeppelinConfiguration extends XMLConfiguration {
         "http://repo1.maven.org/maven2/"),
     ZEPPELIN_INTERPRETER_CONNECT_TIMEOUT("zeppelin.interpreter.connect.timeout", 60000),
     ZEPPELIN_INTERPRETER_MAX_POOL_SIZE("zeppelin.interpreter.max.poolsize", 10),
-    ZEPPELIN_INTERPRETER_GROUP_ORDER("zeppelin.interpreter.group.order", "spark,md,angular,sh,"
+    ZEPPELIN_INTERPRETER_GROUP_ORDER("zeppelin.interpreter.group.order", "mongodb,spark,md,angular,sh,"
         + "livy,alluxio,file,psql,flink,python,ignite,lens,cassandra,geode,kylin,elasticsearch,"
         + "scalding,jdbc,hbase,bigquery,beam,pig,scio,groovy,neo4j"),
     ZEPPELIN_INTERPRETER_OUTPUT_LIMIT("zeppelin.interpreter.output.limit", 1024 * 100),
