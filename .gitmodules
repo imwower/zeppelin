@@ -1,3 +1,0 @@
-[submodule "zeppelin-mongodb-interpreter"]
-    path = zeppelin-mongodb-interpreter
-    url = https://github.com/imwower/zeppelin-mongodb-interpreter.git
