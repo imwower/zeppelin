@@ -221,7 +221,7 @@ public class ZeppelinConfiguration extends XMLConfiguration {
 
   public long getLong(String envName, String propertyName, long defaultValue) {
     if (System.getenv(envName) != null) {
-      return Long.parseLong(getValue(System.getenv((envName));
+      return Long.parseLong(getValue(System.getenv(envName)));
     }
 
     if (System.getProperty(propertyName) != null) {
