@@ -199,11 +199,11 @@ public class ZeppelinConfiguration extends XMLConfiguration {
 
   public int getInt(String envName, String propertyName, int defaultValue) {
     if (System.getenv(envName) != null) {
-      return Integer.parseInt(System.getenv(getValue(envName)));
+      return Integer.parseInt(getValue(System.getenv(envName)));
     }
 
     if (System.getProperty(propertyName) != null) {
-      return Integer.parseInt(System.getProperty(getValue(propertyName)));
+      return Integer.parseInt(getValue(System.getProperty(propertyName)));
     }
     return getIntValue(propertyName, defaultValue);
   }
@@ -221,11 +221,11 @@ public class ZeppelinConfiguration extends XMLConfiguration {
 
   public long getLong(String envName, String propertyName, long defaultValue) {
     if (System.getenv(envName) != null) {
-      return Long.parseLong(System.getenv(getValue(envName)));
+      return Long.parseLong(getValue(System.getenv((envName));
     }
 
     if (System.getProperty(propertyName) != null) {
-      return Long.parseLong(System.getProperty(getValue(propertyName)));
+      return Long.parseLong(getValue(System.getProperty(propertyName)));
     }
     return getLongValue(propertyName, defaultValue);
   }
