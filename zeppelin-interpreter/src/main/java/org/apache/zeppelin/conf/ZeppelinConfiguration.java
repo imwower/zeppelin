@@ -149,7 +149,7 @@ public class ZeppelinConfiguration extends XMLConfiguration {
   private int getIntValue(String name, int d) {
     String value = this.properties.get(name);
     if (value != null) {
-      return Integer.parseInt(value);
+      return Integer.parseInt(getValue(value));
     }
     return d;
   }
@@ -157,7 +157,7 @@ public class ZeppelinConfiguration extends XMLConfiguration {
   private long getLongValue(String name, long d) {
     String value = this.properties.get(name);
     if (value != null) {
-      return Long.parseLong(value);
+      return Long.parseLong(getValue(value));
     }
     return d;
   }
@@ -199,13 +199,20 @@ public class ZeppelinConfiguration extends XMLConfiguration {
 
   public int getInt(String envName, String propertyName, int defaultValue) {
     if (System.getenv(envName) != null) {
-      return Integer.parseInt(System.getenv(envName));
+      return Integer.parseInt(System.getenv(getValue(envName)));
     }
 
     if (System.getProperty(propertyName) != null) {
-      return Integer.parseInt(System.getProperty(propertyName));
+      return Integer.parseInt(System.getProperty(getValue(propertyName)));
     }
     return getIntValue(propertyName, defaultValue);
+  }
+
+  private String getValue(String input) {
+    if (input.contains(":")) {
+      return input.substring(input.lastIndexOf(":") + 1);
+    } else
+      return input;
   }
 
   public long getLong(ConfVars c) {
@@ -214,11 +221,11 @@ public class ZeppelinConfiguration extends XMLConfiguration {
 
   public long getLong(String envName, String propertyName, long defaultValue) {
     if (System.getenv(envName) != null) {
-      return Long.parseLong(System.getenv(envName));
+      return Long.parseLong(System.getenv(getValue(envName)));
     }
 
     if (System.getProperty(propertyName) != null) {
-      return Long.parseLong(System.getProperty(propertyName));
+      return Long.parseLong(System.getProperty(getValue(propertyName)));
     }
     return getLongValue(propertyName, defaultValue);
   }
@@ -261,8 +268,7 @@ public class ZeppelinConfiguration extends XMLConfiguration {
   }
 
   public int getServerSslPort() {
-    ConfVars vars = ConfVars.ZEPPELIN_SSL_PORT;
-    return getValue(vars);
+    return getInt(ConfVars.ZEPPELIN_SSL_PORT);
   }
 
   public boolean useClientAuth() {
@@ -274,28 +280,7 @@ public class ZeppelinConfiguration extends XMLConfiguration {
   }
 
   public int getServerPort() {
-    ConfVars vars = ConfVars.ZEPPELIN_PORT;
-    return getValue(vars);
-  }
-
-  private int getValue(ConfVars vars) {
-    String value = System.getenv(vars.name());
-    if (value != null) {
-      return Integer.parseInt(getValue(value));
-    } else {
-      value = System.getProperty(vars.getVarName());
-      if (value != null) {
-        return Integer.parseInt(getValue(value));
-      }
-      return getIntValue(vars.getVarName(), vars.getIntValue());
-    }
-  }
-
-  private String getValue(String input) {
-    if (input.contains(":")) {
-      return input.substring(input.lastIndexOf(":") + 1);
-    } else
-      return input;
+    return getInt(ConfVars.ZEPPELIN_PORT);
   }
 
   public String getServerContextPath() {
