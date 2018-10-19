@@ -17,14 +17,6 @@
 
 package org.apache.zeppelin.conf;
 
-import java.io.File;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Predicate;
-
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.configuration.tree.ConfigurationNode;
@@ -32,6 +24,14 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.zeppelin.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Predicate;
 
 /**
  * Zeppelin configuration.
@@ -201,11 +201,11 @@ public class ZeppelinConfiguration extends XMLConfiguration {
 
   public int getInt(String envName, String propertyName, int defaultValue) {
     if (System.getenv(envName) != null) {
-      return Integer.parseInt(System.getenv(envName));
+      return Integer.parseInt(getValue(System.getenv(envName)));
     }
 
     if (System.getProperty(propertyName) != null) {
-      return Integer.parseInt(System.getProperty(propertyName));
+      return Integer.parseInt(getValue(System.getProperty(propertyName)));
     }
     return getIntValue(propertyName, defaultValue);
   }
@@ -216,13 +216,20 @@ public class ZeppelinConfiguration extends XMLConfiguration {
 
   public long getLong(String envName, String propertyName, long defaultValue) {
     if (System.getenv(envName) != null) {
-      return Long.parseLong(System.getenv(envName));
+      return Long.parseLong(getValue(System.getenv(envName)));
     }
 
     if (System.getProperty(propertyName) != null) {
-      return Long.parseLong(System.getProperty(propertyName));
+      return Long.parseLong(getValue(System.getProperty(propertyName)));
     }
     return getLongValue(propertyName, defaultValue);
+  }
+
+  private String getValue(String input) {
+    if (input.contains(":")) {
+      return input.substring(input.lastIndexOf(":") + 1);
+    } else
+      return input;
   }
 
   public float getFloat(ConfVars c) {
